@@ -1,0 +1,11 @@
+{
+  "name": "html-clock",
+  "version": "0.1.0",
+  "private": false,
+  "scripts": {
+    "sass-min": "sass assets/scss:assets/css --style compressed"
+  },
+  "dependencies": {
+    "sass": "^1.77.2"
+  }
+}

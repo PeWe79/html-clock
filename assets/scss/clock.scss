@@ -1,0 +1,161 @@
+/* options  */
+
+$colorSecs: SteelBlue; 
+$colorMins: DeepPink; 
+$colorHours: OliveDrab; 
+$colorTrack: #20292f; 
+$dropShadow: 0 0 6px rgba( black, .2 );
+$strokeSize: 16; 
+
+/* reset  */
+
+*, *:before, *:after {
+  margin: 0; 
+  padding: 0; 
+  border: 0; 
+  box-sizing: border-box;
+}
+
+/* document  */
+
+html, body {
+  position: relative; 
+  overflow: hidden; 
+  min-height: 100vh; 
+}
+body {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  background-color: #10191f;
+  font-family: 'Courgette', Monaco, Consolas, monospace;
+  font-size: 30px;
+  font-weight: normal; 
+  color: $colorTrack;
+  
+  &:before {
+    display: block; 
+    position: absolute; 
+    left: 0; 
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-image: url( '../img/abstract_wireframe.jpg' );
+    background-position: center bottom; 
+    background-size: cover;
+    content: '';
+    z-index: 1; 
+    opacity: .1;
+  }
+}
+
+// clock container 
+
+.clock-wrap {
+  position: relative; 
+  font-size: 8vw; 
+	height: 80vw;
+	width: 80vw;
+  z-index: 100;
+  
+  @media only screen and ( min-width: 420px ) {
+    font-size: 8vh; 
+    height: 80vh;
+    width: 80vh;
+  }
+  
+  .clock-day, 
+  .clock-date, 
+  .clock-time {
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    position: absolute; 
+    white-space: nowrap; 
+  }
+  
+  .clock-day {
+    left: 50%; 
+    top: 30%;
+    transform: translateX( -50% ); 
+    letter-spacing: 0;
+    font-size: 80%;
+    color: darken( white, 30% );
+  }
+  
+  .clock-date {
+    left: 50%; 
+    bottom: 30%;
+    transform: translateX( -50% ); 
+    letter-spacing: 0;
+    font-size: 70%;
+    color: darken( white, 50% );
+  }
+  
+  .clock-time {
+    left: 50%; 
+    top: 50%; 
+    transform: translate( -50%, -50% ); 
+    color: lighten( $colorTrack, 10% ); 
+    
+    & > span {
+      padding: 0 .05em; 
+    }
+    .hours {
+      color: $colorHours; 
+    }
+    .minutes {
+      color: $colorMins; 
+    }
+    .seconds {
+      color: $colorSecs; 
+    }
+  }
+  
+  svg {
+    display: block; 
+    -webkit-filter: drop-shadow( $dropShadow );
+    filter: drop-shadow( $dropShadow );
+  }
+  
+  svg circle {
+    position: relative; 
+    fill: none; 
+    stroke-linecap: round;
+    transform-origin: center center; 
+    transform: rotate( -90deg ); 
+  }
+  
+  svg .track {
+    z-index: 1; 
+    stroke-width: $strokeSize;
+	  stroke: $colorTrack;
+  }
+  
+  svg .path {
+    z-index: 2;
+    stroke-width: $strokeSize;
+    transition: stroke-dashoffset 500ms ease-out;
+  }
+  
+  .clock-seconds .path {
+    stroke: rgba( $colorSecs, .8 );
+  }
+  
+  .clock-minutes .path {
+    stroke: rgba( $colorMins, .8 );
+  }
+  
+  .clock-hours .path {
+    stroke: rgba( $colorHours, .8 );
+  }
+  
+  .clock-markers .dots {
+    stroke-width: $strokeSize;
+	  stroke: lighten( $colorTrack, 8% );
+  }
+}
+
